@@ -1,0 +1,11 @@
+Checkpoint 4 - Parte 1 (API e Deploy)
+Turma: TDS - Análise e Desenvolvimento de Sistemas
+Professor: Dr. Marcel Stefan Wagner
+
+Integrantes:
+NICOLAS MONTEIRO RAMIRO - RM 562380
+MARCUS VINICIUS VILA NOVA DA SILVA - RM 558771
+HEBERT LOPES DOS SANTOS - RM 563192
+
+Link do GitHub (com o ReadMe do projeto):
+[preencher com o link do repositório após o push]
