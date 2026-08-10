@@ -18,6 +18,7 @@ API REST para um mercado express (o exemplo que usamos aqui foi produtos de limp
 - Lombok
 - Oracle Database (SQL Developer / ORACLE_FIAP)
 - Tomcat embutido, rodando na porta 8082
+- Docker + Render (deploy)
 
 IDE utilizada: **IntelliJ IDEA**.
 
@@ -160,7 +161,9 @@ Cada resposta da API traz, além dos dados do produto, os links relacionados àq
 
 ## Testes via Postman/Insomnia
 
-Todos os endpoints foram testados no Postman, usando `localhost:8082`.
+O arquivo `mercado-express.postman_collection.json`, na raiz do projeto, tem as 6 requisições do CRUD já prontas (variável `baseUrl` apontando pra `http://localhost:8082` e `produtoId` pra reaproveitar o ID criado no POST). Basta importar no Postman ou Insomnia e rodar.
+
+Todos os endpoints foram testados usando `localhost:8082`.
 
 - **GET /mercado** - listagem geral
   (inserir print)
@@ -177,11 +180,11 @@ Todos os endpoints foram testados no Postman, usando `localhost:8082`.
 
 ## Deploy
 
-Deploy feito no Render, como Web Service apontando para este repositório:
+O repositório já tem o `Dockerfile` e o `render.yaml` (Blueprint) configurados, então o Render builda e sobe a aplicação sem precisar configurar nada manualmente além das duas variáveis de ambiente com a credencial do Oracle:
 
-- Build Command: `./mvnw clean package -DskipTests`
-- Start Command: `java -jar target/mercado-express.jar`
-- Variáveis de ambiente configuradas no Render: `DB_USER` e `DB_PASSWORD` (acesso ao ORACLE_FIAP). A porta é definida automaticamente pela variável `PORT` do Render.
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/lopesadvisory/mercado-express-cp4)
+
+Ao clicar, o Render pede pra você logar na sua conta e preencher `DB_USER` e `DB_PASSWORD` (acesso ao ORACLE_FIAP) - o resto (build, start, porta) já vem do Blueprint.
 
 Link da aplicação publicada: (preencher após o deploy no Render)
 

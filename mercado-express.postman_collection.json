@@ -1,0 +1,82 @@
+{
+	"info": {
+		"name": "Mercado Express - CP4",
+		"description": "Coleção de testes do CRUD da API Mercado Express (Checkpoint 4 - TDS FIAP)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8082"
+		},
+		{
+			"key": "produtoId",
+			"value": "1"
+		}
+	],
+	"item": [
+		{
+			"name": "GET - Listar todos os produtos",
+			"request": {
+				"method": "GET",
+				"url": "{{baseUrl}}/mercado"
+			}
+		},
+		{
+			"name": "GET - Buscar produto por id",
+			"request": {
+				"method": "GET",
+				"url": "{{baseUrl}}/mercado/{{produtoId}}"
+			}
+		},
+		{
+			"name": "POST - Criar produto",
+			"request": {
+				"method": "POST",
+				"header": [
+					{ "key": "Content-Type", "value": "application/json" }
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"nome\": \"Detergente Neutro\",\n  \"tipo\": \"Limpeza\",\n  \"setor\": \"Higiene\",\n  \"tamanho\": \"500ml\",\n  \"preco\": 3.49\n}"
+				},
+				"url": "{{baseUrl}}/mercado"
+			}
+		},
+		{
+			"name": "PUT - Atualizar produto",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{ "key": "Content-Type", "value": "application/json" }
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"nome\": \"Detergente Neutro 1L\",\n  \"tipo\": \"Limpeza\",\n  \"setor\": \"Higiene\",\n  \"tamanho\": \"1L\",\n  \"preco\": 6.99\n}"
+				},
+				"url": "{{baseUrl}}/mercado/{{produtoId}}"
+			}
+		},
+		{
+			"name": "PATCH - Atualizar preco do produto",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{ "key": "Content-Type", "value": "application/json" }
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"preco\": 5.99\n}"
+				},
+				"url": "{{baseUrl}}/mercado/{{produtoId}}"
+			}
+		},
+		{
+			"name": "DELETE - Remover produto",
+			"request": {
+				"method": "DELETE",
+				"url": "{{baseUrl}}/mercado/{{produtoId}}"
+			}
+		}
+	]
+}
