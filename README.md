@@ -177,6 +177,12 @@ Todos os endpoints foram testados no Postman, usando `localhost:8082`.
 
 ## Deploy
 
-Link da aplicação publicada: (preencher após o deploy)
+Deploy feito no Render, como Web Service apontando para este repositório:
 
-Repositório GitHub: (preencher com o link deste repositório)
+- Build Command: `./mvnw clean package -DskipTests`
+- Start Command: `java -jar target/mercado-express.jar`
+- Variáveis de ambiente configuradas no Render: `DB_USER` e `DB_PASSWORD` (acesso ao ORACLE_FIAP). A porta é definida automaticamente pela variável `PORT` do Render.
+
+Link da aplicação publicada: (preencher após o deploy no Render)
+
+Repositório GitHub: https://github.com/lopesadvisory/mercado-express-cp4
