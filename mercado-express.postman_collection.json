@@ -7,11 +7,11 @@
 	"variable": [
 		{
 			"key": "baseUrl",
-			"value": "http://localhost:8082"
+			"value": "https://mercado-express-cp4.onrender.com"
 		},
 		{
 			"key": "produtoId",
-			"value": "1"
+			"value": "2"
 		}
 	],
 	"item": [

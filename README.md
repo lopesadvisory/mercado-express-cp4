@@ -161,9 +161,9 @@ Cada resposta da API traz, além dos dados do produto, os links relacionados àq
 
 ## Testes via Postman/Insomnia
 
-O arquivo `mercado-express.postman_collection.json`, na raiz do projeto, tem as 6 requisições do CRUD já prontas (variável `baseUrl` apontando pra `http://localhost:8082` e `produtoId` pra reaproveitar o ID criado no POST). Basta importar no Postman ou Insomnia e rodar.
+O arquivo `mercado-express.postman_collection.json`, na raiz do projeto, tem as 6 requisições do CRUD já prontas (variável `baseUrl` já apontando pra API publicada no Render, e `produtoId` pra reaproveitar o ID de um produto existente). Pra testar local, basta trocar o `baseUrl` pra `http://localhost:8082`. Basta importar no Postman ou Insomnia e rodar.
 
-Todos os endpoints foram testados usando `localhost:8082`.
+Todos os endpoints foram testados e validados tanto localmente (`localhost:8082`) quanto na aplicação já publicada no Render, direto no Oracle da FIAP.
 
 - **GET /mercado** - listagem geral
   (inserir print)
@@ -186,6 +186,6 @@ O repositório já tem o `Dockerfile` e o `render.yaml` (Blueprint) configurados
 
 Ao clicar, o Render pede pra você logar na sua conta e preencher `DB_USER` e `DB_PASSWORD` (acesso ao ORACLE_FIAP) - o resto (build, start, porta) já vem do Blueprint.
 
-Link da aplicação publicada: (preencher após o deploy no Render)
+Link da aplicação publicada: https://mercado-express-cp4.onrender.com/mercado
 
 Repositório GitHub: https://github.com/lopesadvisory/mercado-express-cp4

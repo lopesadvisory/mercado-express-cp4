@@ -9,3 +9,6 @@ HEBERT LOPES DOS SANTOS - RM 563192
 
 Link do GitHub (com o ReadMe do projeto):
 https://github.com/lopesadvisory/mercado-express-cp4
+
+Link da aplicação publicada (Render):
+https://mercado-express-cp4.onrender.com/mercado
