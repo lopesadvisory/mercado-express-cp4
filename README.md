@@ -1,8 +1,10 @@
 # Mercado Express - API
 
-Checkpoint 4 (Parte 1 - API e Deploy) da disciplina de TDS, FIAP. Professor Dr. Marcel Stefan Wagner.
+Trabalho de Checkpoint 4 (Parte 1 - API e Deploy) da disciplina de TDS, FIAP, sob orientação do professor Dr. Marcel Stefan Wagner.
 
-API REST para um mercado express (o exemplo que usamos aqui foi produtos de limpeza e mercearia), com CRUD completo e persistência no Oracle da FIAP.
+O projeto consiste numa API REST para o controle de estoque de um mercado express (o exemplo adotado foi produtos de limpeza e mercearia, mas a estrutura serve pra qualquer item vendido nesse tipo de loja). A API foi construída em Spring Boot e implementa o CRUD completo - Create, Read, Update e Delete - persistindo os dados numa tabela real no banco Oracle da FIAP, e segue o padrão HATEOAS de nível de maturidade 3, conforme solicitado no enunciado.
+
+A aplicação está publicada e em funcionamento em: https://mercado-express-cp4.onrender.com/mercado
 
 ## Integrantes
 
@@ -10,47 +12,31 @@ API REST para um mercado express (o exemplo que usamos aqui foi produtos de limp
 - Marcus Vinicius Vila Nova da Silva - RM 558771
 - Hebert Lopes dos Santos - RM 563192
 
-## Tecnologias usadas
+IDE utilizada no desenvolvimento: **IntelliJ IDEA**.
+
+## Tecnologias utilizadas
 
 - Java 17
-- Spring Boot 3.3.4 (Web, Data JPA, HATEOAS, Validation)
+- Spring Boot 3.3.4, com os módulos Web, Data JPA, HATEOAS e Validation
 - Maven
-- Lombok
-- Oracle Database (SQL Developer / ORACLE_FIAP)
-- Tomcat embutido, rodando na porta 8082
-- Docker + Render (deploy)
+- Lombok, usado na entidade `Produto` para eliminar getters, setters e construtores escritos manualmente
+- Oracle Database (SQL Developer / ORACLE_FIAP), acessado via Spring Data JPA
+- Docker e Render, para o deploy
 
-IDE utilizada: **IntelliJ IDEA**.
+## Estrutura de dados
 
-## Estrutura da tabela no banco
+Os produtos são armazenados na tabela `TDS_TB_MERCADO`, criada no Oracle com as colunas exigidas pelo enunciado:
 
-A aplicação usa a tabela `TDS_TB_MERCADO` no Oracle, com o seguinte formato:
+| Coluna  | Tipo          | Descrição                                   |
+|---------|---------------|----------------------------------------------|
+| ID      | NUMBER        | Identificador do produto, gerado automaticamente |
+| NOME    | VARCHAR2(100) | Nome do produto                             |
+| TIPO    | VARCHAR2(50)  | Categoria do produto (ex: Limpeza)          |
+| SETOR   | VARCHAR2(50)  | Setor do mercado onde o produto fica (ex: Higiene) |
+| TAMANHO | VARCHAR2(20)  | Tamanho ou embalagem do produto (ex: 500ml) |
+| PRECO   | NUMBER(10,2)  | Preço unitário do produto                   |
 
-| Coluna  | Tipo          |
-|---------|---------------|
-| ID      | NUMBER        |
-| NOME    | VARCHAR2(100) |
-| TIPO    | VARCHAR2(50)  |
-| SETOR   | VARCHAR2(50)  |
-| TAMANHO | VARCHAR2(20)  |
-| PRECO   | NUMBER(10,2)  |
-
-A tabela e a sequence usada para o ID (`TDS_SEQ_MERCADO`) são criadas automaticamente pelo Hibernate na primeira vez que a aplicação sobe (`spring.jpa.hibernate.ddl-auto=update`), então não é necessário criar nada manualmente no SQL Developer.
-
-## Configuração de acesso ao banco
-
-Por segurança, o usuário e a senha do Oracle não estão no código - eles são lidos de variáveis de ambiente:
-
-- `DB_USER` - usuário do Oracle FIAP (RM)
-- `DB_PASSWORD` - senha do Oracle FIAP
-
-No IntelliJ, isso é configurado em **Run > Edit Configurations > Environment variables**, adicionando as duas variáveis com os valores de acesso ao ORACLE_FIAP.
-
-## Como rodar o projeto localmente
-
-1. Configurar as variáveis de ambiente `DB_USER` e `DB_PASSWORD` (acesso ao ORACLE_FIAP).
-2. Rodar a classe `MercadoExpressApplication`.
-3. A API sobe em `http://localhost:8082`.
+A tabela e a sequence do ID (`TDS_SEQ_MERCADO`) são criadas automaticamente pelo Hibernate na primeira execução da aplicação.
 
 ## Endpoints
 
@@ -72,17 +58,17 @@ Lista todos os produtos cadastrados.
         "tamanho": "500ml",
         "preco": 3.49,
         "_links": {
-          "self": { "href": "http://localhost:8082/mercado/1" },
-          "mercado": { "href": "http://localhost:8082/mercado" },
-          "atualizar": { "href": "http://localhost:8082/mercado/1" },
-          "atualizar-parcial": { "href": "http://localhost:8082/mercado/1" },
-          "deletar": { "href": "http://localhost:8082/mercado/1" }
+          "self": { "href": "https://mercado-express-cp4.onrender.com/mercado/1" },
+          "mercado": { "href": "https://mercado-express-cp4.onrender.com/mercado" },
+          "atualizar": { "href": "https://mercado-express-cp4.onrender.com/mercado/1" },
+          "atualizar-parcial": { "href": "https://mercado-express-cp4.onrender.com/mercado/1" },
+          "deletar": { "href": "https://mercado-express-cp4.onrender.com/mercado/1" }
         }
       }
     ]
   },
   "_links": {
-    "self": { "href": "http://localhost:8082/mercado" }
+    "self": { "href": "https://mercado-express-cp4.onrender.com/mercado" }
   }
 }
 ```
@@ -100,11 +86,11 @@ Busca um produto específico pelo ID.
   "tamanho": "500ml",
   "preco": 3.49,
   "_links": {
-    "self": { "href": "http://localhost:8082/mercado/1" },
-    "mercado": { "href": "http://localhost:8082/mercado" },
-    "atualizar": { "href": "http://localhost:8082/mercado/1" },
-    "atualizar-parcial": { "href": "http://localhost:8082/mercado/1" },
-    "deletar": { "href": "http://localhost:8082/mercado/1" }
+    "self": { "href": "https://mercado-express-cp4.onrender.com/mercado/1" },
+    "mercado": { "href": "https://mercado-express-cp4.onrender.com/mercado" },
+    "atualizar": { "href": "https://mercado-express-cp4.onrender.com/mercado/1" },
+    "atualizar-parcial": { "href": "https://mercado-express-cp4.onrender.com/mercado/1" },
+    "deletar": { "href": "https://mercado-express-cp4.onrender.com/mercado/1" }
   }
 }
 ```
@@ -159,11 +145,9 @@ Remove o produto do banco pelo ID. Retorna `204 No Content`.
 
 Cada resposta da API traz, além dos dados do produto, os links relacionados àquele recurso (`self`, `mercado`, `atualizar`, `atualizar-parcial`, `deletar`), seguindo o nível de maturidade 3 de Richardson: o cliente não precisa saber de antemão a estrutura das URLs, ele navega pelos links retornados pela própria API.
 
-## Testes via Postman/Insomnia
+## Testes realizados
 
-O arquivo `mercado-express.postman_collection.json`, na raiz do projeto, tem as 6 requisições do CRUD já prontas (variável `baseUrl` já apontando pra API publicada no Render, e `produtoId` pra reaproveitar o ID de um produto existente). Pra testar local, basta trocar o `baseUrl` pra `http://localhost:8082`. Basta importar no Postman ou Insomnia e rodar.
-
-Todos os endpoints foram testados e validados tanto localmente (`localhost:8082`) quanto na aplicação já publicada no Render, direto no Oracle da FIAP.
+Todos os endpoints foram testados via Postman, tanto na aplicação publicada no Render quanto rodando localmente, com o retorno confirmado direto do Oracle FIAP em cada operação.
 
 - **GET /mercado** - listagem geral
   (inserir print)
@@ -178,14 +162,20 @@ Todos os endpoints foram testados e validados tanto localmente (`localhost:8082`
 - **DELETE /mercado/{id}** - exclusão
   (inserir print)
 
+O arquivo `mercado-express.postman_collection.json`, na raiz do repositório, reúne essas seis requisições já configuradas, com a variável `baseUrl` apontando para a API publicada no Render.
+
 ## Deploy
 
-O repositório já tem o `Dockerfile` e o `render.yaml` (Blueprint) configurados, então o Render builda e sobe a aplicação sem precisar configurar nada manualmente além das duas variáveis de ambiente com a credencial do Oracle:
+A aplicação está publicada no Render, com build automatizado a partir do `Dockerfile` e do `render.yaml` presentes no repositório - o Render compila o projeto e sobe o serviço sem necessidade de configuração manual de build ou start command, apenas das credenciais de acesso ao Oracle (`DB_USER` e `DB_PASSWORD`), definidas como variáveis de ambiente no próprio Render.
 
-[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/lopesadvisory/mercado-express-cp4)
+- Aplicação publicada: https://mercado-express-cp4.onrender.com/mercado
+- Repositório GitHub: https://github.com/lopesadvisory/mercado-express-cp4
 
-Ao clicar, o Render pede pra você logar na sua conta e preencher `DB_USER` e `DB_PASSWORD` (acesso ao ORACLE_FIAP) - o resto (build, start, porta) já vem do Blueprint.
+## Executando o projeto localmente
 
-Link da aplicação publicada: https://mercado-express-cp4.onrender.com/mercado
+Para rodar a aplicação fora do Render (por exemplo, no IntelliJ), é necessário configurar duas variáveis de ambiente com o acesso ao Oracle FIAP antes de iniciar a classe `MercadoExpressApplication`:
 
-Repositório GitHub: https://github.com/lopesadvisory/mercado-express-cp4
+- `DB_USER` - usuário do Oracle FIAP (RM)
+- `DB_PASSWORD` - senha do Oracle FIAP
+
+Nenhuma credencial fica salva no código ou no repositório - elas são lidas em tempo de execução a partir dessas variáveis. Com elas configuradas, a aplicação sobe em `http://localhost:8082`.
