@@ -1,5 +1,6 @@
 Checkpoint 4 - Parte 1 (API e Deploy)
-Turma: TDS - Análise e Desenvolvimento de Sistemas
+Curso: Análise e Desenvolvimento de Sistemas (TDS)
+Turma: 2TDSR
 Professor: Dr. Marcel Stefan Wagner
 
 Integrantes:
