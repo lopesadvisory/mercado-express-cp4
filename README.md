@@ -23,6 +23,10 @@ IDE utilizada no desenvolvimento: **IntelliJ IDEA**.
 - Oracle Database (SQL Developer / ORACLE_FIAP), acessado via Spring Data JPA
 - Docker e Render, para o deploy
 
+Configuração final gerada no Spring Initializr:
+
+![Spring Initializr](prints/print-spring-initializr.jpeg)
+
 ## Estrutura de dados
 
 Os produtos são armazenados na tabela `TDS_TB_MERCADO`, criada no Oracle com as colunas exigidas pelo enunciado:
@@ -147,22 +151,33 @@ Cada resposta da API traz, além dos dados do produto, os links relacionados àq
 
 ## Testes realizados
 
-Todos os endpoints foram testados via Postman, tanto na aplicação publicada no Render quanto rodando localmente, com o retorno confirmado direto do Oracle FIAP em cada operação.
+Todos os endpoints foram testados no Insomnia, com a aplicação rodando localmente em `localhost:8082` e conectada ao Oracle FIAP de verdade - cada print abaixo mostra o retorno real da API.
 
-- **GET /mercado** - listagem geral
-  (inserir print)
-- **GET /mercado/{id}** - busca por ID
-  (inserir print)
-- **POST /mercado** - cadastro de um novo produto
-  (inserir print)
-- **PUT /mercado/{id}** - atualização completa
-  (inserir print)
-- **PATCH /mercado/{id}** - atualização parcial
-  (inserir print)
-- **DELETE /mercado/{id}** - exclusão
-  (inserir print)
+**GET /mercado** - lista os produtos cadastrados na tabela:
 
-O arquivo `mercado-express.postman_collection.json`, na raiz do repositório, reúne essas seis requisições já configuradas, com a variável `baseUrl` apontando para a API publicada no Render.
+![GET /mercado](prints/print-get-listar.jpeg)
+
+**GET /mercado/{id}** - busca um produto específico pelo ID:
+
+![GET /mercado/{id}](prints/print-get-por-id.jpeg)
+
+**POST /mercado** - cadastra um novo produto e retorna 201 Created, já com o ID gerado e os links do HATEOAS:
+
+![POST /mercado](prints/print-post.jpeg)
+
+**PUT /mercado/{id}** - atualiza todos os campos do produto:
+
+![PUT /mercado/{id}](prints/print-put.jpeg)
+
+**PATCH /mercado/{id}** - atualiza somente o campo enviado (nesse caso, o preço):
+
+![PATCH /mercado/{id}](prints/print-patch.jpeg)
+
+**DELETE /mercado/{id}** - remove o produto e retorna 204 No Content:
+
+![DELETE /mercado/{id}](prints/print-delete.jpeg)
+
+O arquivo `mercado-express.postman_collection.json`, na raiz do repositório, reúne essas seis requisições já configuradas, com a variável `baseUrl` apontando para a API publicada no Render (para reproduzir os testes localmente, como nos prints acima, basta trocar essa variável para `http://localhost:8082`).
 
 ## Deploy
 
